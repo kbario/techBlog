@@ -10,12 +10,14 @@ const warningEl = document.getElementById('warning');
 // form button
 const loginBtn = document.getElementById('login-btn');
 
-loginBtn.addEventListener('click', () => {
-  if (password !== passwordConfirm) {
-    warningEl.textContent = 'Passwords do not match';
+loginBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (email.value.trim() === '' || password.value.trim() === '') {
+    warningEl.innerHTML = 'Please provide both an email and password';
     setTimeout(() => {
-      warningEl.textContent = '';
+      warningEl.innerHTML = '';
     }, 2500);
     return;
+  } else {
   }
 });
