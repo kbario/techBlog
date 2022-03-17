@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "seed": "node seeds/seed.js"
+    "seed": "node seeds/seed.js",
+    "tdev": "npx tailwindcss -i ./src/input.css -o ./public/style.css --watch",
+    "tbuild": "npx tailwindcss -i ./src/input.css -o ./public/style.css --minify"
   },
   "keywords": [],
   "author": "",
