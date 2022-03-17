@@ -676,6 +676,9 @@ select {
 .max-w-4xl {
   max-width: 56rem;
 }
+.max-w-sm {
+  max-width: 24rem;
+}
 .grow {
   flex-grow: 1;
 }
