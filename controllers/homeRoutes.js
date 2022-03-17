@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
     // const galleries = dbGalleryData.map((gallery) =>
     //   gallery.get({ plain: true })
     // );
-    res.render('homepage'); //, {
+    res.render('homepage', { logged_in: req.session.loggedIn }); //, {
     //   galleries,
     //   loggedIn: req.session.loggedIn,
     // });
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 
 router.get('/login', async (req, res) => {
   try {
-    res.render('login');
+    res.render('login', { logged_in: req.session.loggedIn });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -37,12 +37,21 @@ router.get('/login', async (req, res) => {
 
 router.get('/signup', async (req, res) => {
   try {
-    res.render('signup');
+    res.render('signup', { logged_in: req.session.loggedIn });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
+
+// router.get('/login', async (req, res) => {
+//   try {
+//     res.render('logout', { logged_in: req.session.loggedIn });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
 
 // // GET one gallery
 // router.get('/gallery/:id', async (req, res) => {
