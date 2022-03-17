@@ -1,19 +1,19 @@
 // global vars
 // form inputs
-const email = document.getElementById('email');
-const password = document.getElementById('password');
+const loginEmail = document.getElementById('login-email');
+const loginPassword = document.getElementById('login-password');
 
-const warningEl = document.getElementById('warning');
+const loginWarningEl = document.getElementById('login-warning');
 
 // form button
-const loginBtn = document.getElementById('login-btn');
+const loginLoginBtn = document.getElementById('login-login-btn');
 
-loginBtn.addEventListener('click', (e) => {
+loginLoginBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  if (email.value.trim() === '' || password.value.trim() === '') {
-    warningEl.innerHTML = 'Please provide both an email and password';
+  if (loginEmail.value.trim() === '' || loginPassword.value.trim() === '') {
+    loginWarningEl.innerHTML = 'Please provide both an email and password';
     setTimeout(() => {
-      warningEl.innerHTML = '';
+      loginWarningEl.innerHTML = '';
     }, 2500);
     return;
   } else {
