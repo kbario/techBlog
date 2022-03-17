@@ -1,19 +1,23 @@
-const firstName = document.getElementById('first-name').value.trim();
-const lastName = document.getElementById('last-name').value.trim();
-const email = document.getElementById('email').value.trim();
-const password = document.getElementById('password').value.trim();
-const passwordConfirm = document
-  .getElementById('password-confirm')
-  .value.trim();
+const firstName = document.getElementById('first-name');
+const lastName = document.getElementById('last-name');
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const passwordConfirm = document.getElementById('password-confirm');
 const warningEl = document.getElementById('warning');
 
 // form button
-const loginBtn = document.getElementById('login-btn');
+const signupBtn = document.getElementById('singup-btn');
 
-loginBtn.addEventListener('click', (e) => {
+signupBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  if (email.value.trim() === '' || password.value.trim() === '') {
-    warningEl.innerHTML = 'Please provide both an email and password';
+  if (
+    firstName.value.trim() === '' ||
+    lastName.value.trim() === '' ||
+    email.value.trim() === '' ||
+    password.value.trim() === '' ||
+    passwordConfirm.value.trim() === ''
+  ) {
+    warningEl.innerHTML = 'Please fill out all sections';
     setTimeout(() => {
       warningEl.innerHTML = '';
     }, 2500);
