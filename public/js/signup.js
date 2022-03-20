@@ -35,8 +35,12 @@ signupBtn.addEventListener('click', async (e) => {
     const response = await fetch('/api/users/', {
       method: 'POST',
       body: JSON.stringify({
-        first_name: firstName.value.trim(),
-        last_name: lastName.value.trim(),
+        first_name:
+          firstName.value.charAt(0).toUpperCase().trim() +
+          firstName.value.slice(1).trim(),
+        last_name:
+          lastName.value.charAt(0).toUpperCase().trim() +
+          lastName.value.slice(1).trim(),
         username: username.value.trim(),
         email: email.value.trim(),
         password: password.value.trim(),
@@ -44,10 +48,14 @@ signupBtn.addEventListener('click', async (e) => {
       headers: { 'Content-Type': 'application/json' },
     });
     if (response.ok) {
-      document.location.replace('/');
+      // document.location.replace('/');
     } else {
-      showWarning('Could not create user with that username and password');
-      return;
+      response.json().then((response) => {
+        if (response.errors[0].message === 'email must be unique') {
+          showWarning('This user already exists');
+          return;
+        }
+      });
     }
   }
 });

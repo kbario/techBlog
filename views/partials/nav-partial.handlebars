@@ -1,8 +1,8 @@
 <a href="/" class="text-4xl">techBlog</a>
 <div class="flex gap-3">
-    <a href="">Dashboard</a>
+    <a href="/dashboard">Dashboard</a>
     {{#if logged_in}}
-    <a href="/logout">Logout</a>
+    <button id="navbar-logout-btn">Logout</button>
     {{else}}
     <a href="/login">Login</a>
     {{/if}}
