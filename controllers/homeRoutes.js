@@ -15,10 +15,9 @@ router.get('/', async (req, res) => {
       // limit: 5,
     });
     if (userPosts) {
-      ç;
       const posts = userPosts.map((post) => post.get({ plain: true }));
       const postData = formatData(posts);
-      console.log('\x1B[1;33mHERE\x1B[0m', postData);
+      // console.log('\x1B[1;33mHERE\x1B[0m', postData);
       res.render('homepage', {
         posts: postData,
         logged_in: req.session.loggedIn,
@@ -26,7 +25,7 @@ router.get('/', async (req, res) => {
       });
     }
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).json(err);
   }
 });
@@ -35,7 +34,7 @@ router.get('/login', async (req, res) => {
   try {
     res.render('login', { logged_in: req.session.loggedIn });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).json(err);
   }
 });
@@ -44,7 +43,7 @@ router.get('/signup', async (req, res) => {
   try {
     res.render('signup', { logged_in: req.session.loggedIn });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).json(err);
   }
 });
@@ -59,7 +58,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     if (userPosts) {
       const posts = userPosts.map((post) => post.get({ plain: true }));
       const postData = formatData(posts);
-      console.log('\x1B[1;33mHERE\x1B[0m', postData);
+      // console.log('\x1B[1;33mHERE\x1B[0m', postData);
       res.render('dashboard', {
         posts: postData,
         logged_in: req.session.loggedIn,
@@ -72,7 +71,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
       });
     }
   } catch (err) {
-    console.log('\x1B[1;33mHERE\x1B[0m', err);
+    // console.log('\x1B[1;33mHERE\x1B[0m', err);
     res.status(500).json(err);
   }
 });
@@ -81,7 +80,7 @@ router.get('/create', withAuth, async (req, res) => {
   try {
     res.render('create-post', { logged_in: req.session.loggedIn });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).json(err);
   }
 });
