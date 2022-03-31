@@ -1,11 +1,17 @@
-<h1 class="text-4xl">{{name}}'s Dashboard</h1>
+<div class="flex flex-col gap-5 items-start">
+    <h1 class="text-4xl">{{name}}'s Dashboard</h1>
 
-{{#if posts}}
-{{>post-partial}}
-{{else}}
-<div>you don't have any posts yet</div>
-{{/if}}
+    {{#if posts}}
+    <div class="flex flex-col w-full">
+        {{#each posts}}
+            {{>post-partial}}
+            <hr class="bg-slate-200 {{#if @last}} hidden {{/if}}">
+        {{/each}}
+    </div>
+    {{else}}
+        <div>You don't have any posts just yet.</div>
+    {{/if}}
+    <a href="/create" id="create-btn" class="btn-blue">Create a Post</a>
+</div>
 
-<button id="create-btn" class="px-4 py-2 bg-blue-600 text-white rounded-full shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all">Create a Post</button>
-
-<script src="dashboard.js"></script>
+<script src="./js/dashboard.js"></script>

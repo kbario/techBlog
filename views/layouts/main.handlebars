@@ -9,16 +9,16 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body class="min-h-screen flex flex-col">
-    <nav class="bg-blue-600 text-slate-100 px-8 py-4 flex justify-between items-center">
+    <nav class="bg-blue-600 text-slate-100 h-20 p-5 flex justify-between items-center">
         {{>nav-partial}}
     </nav> 
-    <main class="grow bg-slate-100 p-8">
-        <div class="max-w-4xl mx-auto">
+    <main class="grow bg-slate-100 p-5">
+        <div class="max-w-4xl mx-auto h-full">
         {{{body}}}
         </div>
     </main>
 </body>
 {{#if logged_in}}
-    <script src="./js/logout.js"></script>
+<script src="./js/logout.js"></script>
 {{/if}}
 </html>

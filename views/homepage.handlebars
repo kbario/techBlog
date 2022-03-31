@@ -1,1 +1,29 @@
-<h2>Welcome {{name}}!</h2>
+<div class="flex flex-col gap-5">
+    {{#if logged_in}}
+<h1 class="text-4xl">{{name}}'s Feed</h1>
+{{else}}
+<h1 class="text-4xl">A Logged-Out Scrublord's Feed</h1>
+{{/if}}
+
+{{#if posts}}
+    <div class="flex flex-col w-full gap-3">
+        {{#each posts}}
+        <div class="flex flex-col p-3 gap-3 bg-slate-50 border border-slate-200">
+            <div class="flex justify-between">
+                <div class="text-xl">{{user.username}} - {{title}}</div>
+                <div>{{updatedAt}}</div>
+            </div>
+            <div>{{content}}</div>
+            <hr class="bg-slate-200">
+            <div class="justify-between flex ">
+                <p>Like</p>
+                <p>Comment</p>
+            </div>
+        </div>
+            {{!-- {{>post-partial}} --}}
+        {{/each}}
+    </div>
+    {{else}}
+        <div>There are no more posts to display.</div>
+    {{/if}}
+</div>
