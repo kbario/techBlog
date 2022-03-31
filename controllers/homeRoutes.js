@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
       // limit: 5,
     });
     if (userPosts) {
+      ç;
       const posts = userPosts.map((post) => post.get({ plain: true }));
       const postData = formatData(posts);
       console.log('\x1B[1;33mHERE\x1B[0m', postData);
