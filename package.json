@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node server.js",
     "seed": "node seeds/seed.js",
     "dev": "postcss src/input.css -o public/css/style.css --watch"
@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
+    "jest": "^27.5.1",
     "mysql2": "^2.2.5",
     "sequelize": "^6.3.5"
   },
