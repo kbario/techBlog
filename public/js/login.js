@@ -5,7 +5,7 @@ const loginPassword = document.getElementById('login-password');
 const loginWarningEl = document.getElementById('login-warning');
 
 // form button
-const loginLoginBtn = document.getElementById('login-login-btn');
+const loginLoginBtn = document.getElementById('login-btn');
 
 function showWarning(message) {
   loginWarningEl.innerHTML = message;
@@ -34,11 +34,13 @@ loginLoginBtn.addEventListener('click', async (e) => {
     if (response.ok) {
       document.location.replace('/');
     } else {
-      response.json().then((response) => {
-        console.log(response);
-      });
-      showWarning('Could not create user with that username and password');
-      return;
+      const data = await response.json();
+      if (data.message === 'Incorrect email. Please try again!') {
+        showWarning('There is no user with that email');
+        return;
+      } else {
+        showWarning(data.message);
+      }
     }
   }
 });

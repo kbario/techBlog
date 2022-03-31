@@ -4,7 +4,7 @@ const username = document.getElementById('username');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const passwordConfirm = document.getElementById('password-confirm');
-const warningEl = document.getElementById('warning');
+const warningEl = document.getElementById('signup-warning');
 
 // form button
 const signupBtn = document.getElementById('signup-btn');
@@ -48,14 +48,15 @@ signupBtn.addEventListener('click', async (e) => {
       headers: { 'Content-Type': 'application/json' },
     });
     if (response.ok) {
-      // document.location.replace('/');
+      document.location.replace('/');
     } else {
-      response.json().then((response) => {
-        if (response.errors[0].message === 'email must be unique') {
-          showWarning('This user already exists');
-          return;
-        }
-      });
+      const data = await response.json();
+      if (data.errors[0].message === 'email must be unique') {
+        showWarning('This user already exists');
+        return;
+      } else {
+        showWarning(data.errors[0].message);
+      }
     }
   }
 });
