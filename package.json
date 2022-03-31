@@ -7,7 +7,8 @@
     "test": "jest",
     "start": "node server.js",
     "seed": "node seeds/seed.js",
-    "dev": "postcss src/input.css -o public/css/style.css --watch"
+    "dev": "postcss src/input.css -o public/css/style.css --watch",
+    "build": "postcss src/input.css -o public/css/style.css --minify"
   },
   "keywords": [],
   "author": "",
