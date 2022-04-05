@@ -8,16 +8,16 @@ router.get('/', async (req, res) => {
     const userPosts = await Post.findAll({
       include: {
         model: User,
-        attributes: ['username'],
+        // attributes: ['username'],
       },
-      order: [['updatedAt', 'ASC']],
+      order: [['updatedAt', 'DESC']],
       // offset: 0,
       // limit: 5,
     });
     if (userPosts) {
       const posts = userPosts.map((post) => post.get({ plain: true }));
       const postData = formatData(posts);
-      // console.log('\x1B[1;33mHERE\x1B[0m', postData);
+      console.log('\x1B[1;33mHERE\x1B[0m', postData);
       res.render('homepage', {
         posts: postData,
         logged_in: req.session.loggedIn,
