@@ -8,9 +8,13 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
                 </svg>
             </div>
-            <button href="" class="btn-blue">Edit</button>
+            <a href="api/posts/edit/{{id}}" class="btn-blue">Edit</a>
             <button onclick="del({{id}})" class="btn-grey">X</button>
         </div>
     </div>
     <div class="hidden">{{content}}</div>
 </div>
+
+{{!-- to delete a post --}}
+{{!-- <button onclick="del({{id}})" class="btn-grey">X</button> --}}
+{{!-- <a href="api/posts/edit/{{id}}" class="btn-blue">Edit</a> --}}

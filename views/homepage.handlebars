@@ -1,8 +1,8 @@
 <div class="flex flex-col gap-5">
-    {{#if logged_in}}
-<h1 class="text-4xl">{{name}}'s Feed</h1>
+{{#if logged_in}}
+    <h1 class="text-4xl">{{name}}'s Feed</h1>
 {{else}}
-<h1 class="text-4xl">A Logged-Out Scrublord's Feed</h1>
+    <h1 class="text-4xl">A Logged-Out Scrublord's Feed</h1>
 {{/if}}
 
 {{#if posts}}
@@ -10,15 +10,25 @@
         {{#each posts}}
         <div class="flex flex-col p-3 gap-3 bg-slate-50 border border-slate-200">
             <div class="flex justify-between">
-                <div class="text-xl">{{user.username}} - {{title}}</div>
+                <div class="flex flex-col ga">
+                    <div class="text-slate-600">{{user.username}}</div>
+                    <div class="text-xl">{{title}}</div>
+                </div>
                 <div>{{updatedAt}}</div>
             </div>
             <div>{{content}}</div>
-            <hr class="bg-slate-200">
-            <div class="justify-between flex ">
-                <p>Like</p>
-                <p>Comment</p>
-            </div>
+                <hr class="bg-slate-200">
+            {{#if ../logged_in}}
+                <div class="justify-between flex ">
+                    {{!-- <button class="btn-blue">Like</button> --}}
+                    <button class="btn-blue">Comment</button>
+                </div>
+            {{else}}
+                <div class="flex gap-3">
+                    {{!-- <button title="login to like the post" class="btn-grey hover:cursor-not-allowed" disabled>Like</button> --}}
+                    <button title="login to comment on this post" class="btn-grey hover:cursor-help" disabled>Comment</button>
+                </div>
+            {{/if}}
         </div>
             {{!-- {{>post-partial}} --}}
         {{/each}}
