@@ -84,6 +84,12 @@ const postData = [
       "Turns out you can't delete your account from techBlog... Umm, this should be illegal.",
     user_id: '2',
   },
+  {
+    title: 'Water is the spice of life',
+    content:
+      'Without water, we would all die. just remember that next time you pee your urine down a drain pipe and not drink it like a normal human being. all water counts mate...',
+    user_id: '2',
+  },
 ];
 
 const seedPosts = () => Post.bulkCreate(postData);
