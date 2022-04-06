@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     const userPosts = await Post.findAll({
       include: {
         model: User,
-        // attributes: ['username'],
+        attributes: ['username'],
       },
       order: [['updatedAt', 'DESC']],
       // offset: 0,
@@ -79,6 +79,15 @@ router.get('/dashboard', withAuth, async (req, res) => {
 router.get('/create', withAuth, async (req, res) => {
   try {
     res.render('create-post', { logged_in: req.session.loggedIn });
+  } catch (err) {
+    // console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.get('/edit', withAuth, async (req, res) => {
+  try {
+    res.render('edit-post', { logged_in: req.session.loggedIn });
   } catch (err) {
     // console.log(err);
     res.status(500).json(err);
