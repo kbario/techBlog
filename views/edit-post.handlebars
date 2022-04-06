@@ -1,0 +1,16 @@
+<div class="flex flex-col w-full gap-6">
+    <form class="w-full space-y-8">
+        <div class="flex flex-col w-full">
+            <h1 class="text-3xl">Title</h1>
+            <input id="title-input" type="text" class="form-input form-inputs" value="{{title}}">
+        </div>
+        <div class="flex flex-col w-full">
+            <h3 class="text-3xl">Content</h3>
+            <textarea id="content-input" type="text" class="form-textarea form-inputs">{{content}}</textarea>
+        </div>
+        <button onclick="editPost(event, {{id}})" class="btn-blue">Update</button>
+    </form>
+    <p id="edit-warning" class="text-red-600"></p>
+</div>
+
+<script src="/js/edit.js"></script>
