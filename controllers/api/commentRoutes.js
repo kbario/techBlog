@@ -11,25 +11,25 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/edit/:id', async (req, res) => {
-  try {
-    const postData = await Comment.findByPk(req.params.id, {
-      attributes: ['id', 'title', 'content'],
-    });
-    const posts = postData.get({ plain: true });
+// router.get('/edit/:id', async (req, res) => {
+//   try {
+//     const postData = await Comment.findByPk(req.params.id, {
+//       attributes: ['id', 'title', 'content'],
+//     });
+//     const posts = postData.get({ plain: true });
 
-    res.render('edit-post', posts);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+//     res.render('edit-post', posts);
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
 
 router.post('/', async (req, res) => {
   try {
     const newPost = await Comment.create({
-      title: req.body.title,
       content: req.body.content,
       user_id: req.session.user_id,
+      post_id: req.body.post_id,
     });
 
     res.status(200).json(newPost);
@@ -38,21 +38,21 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res) => {
-  try {
-    const newPost = await Comment.update(
-      {
-        title: req.body.title,
-        content: req.body.content,
-      },
-      { where: { id: req.params.id } }
-    );
+// router.put('/:id', async (req, res) => {
+//   try {
+//     const newPost = await Comment.update(
+//       {
+//         title: req.body.title,
+//         content: req.body.content,
+//       },
+//       { where: { id: req.params.id } }
+//     );
 
-    res.status(200).json(newPost);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+//     res.status(200).json(newPost);
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
 
 router.delete('/:id', async (req, res) => {
   try {

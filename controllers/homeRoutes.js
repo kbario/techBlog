@@ -1,27 +1,33 @@
 const router = require('express').Router();
-const { Post, User } = require('../models');
+const { Post, User, Comment } = require('../models');
 const { withAuth, formatData } = require('../utils/helpers');
 
 // GET all galleries for homepage
 router.get('/', async (req, res) => {
   try {
     const userPosts = await Post.findAll({
-      include: {
-        model: User,
-        attributes: ['username'],
-      },
-      order: [['updatedAt', 'DESC']],
-      // offset: 0,
-      // limit: 5,
+      include: [
+        { model: User, attributes: ['username'] },
+        {
+          model: Comment,
+          attributes: ['content', 'createdAt'],
+          include: {
+            model: User,
+            attributes: ['username'],
+          },
+        },
+      ],
     });
     if (userPosts) {
       const posts = userPosts.map((post) => post.get({ plain: true }));
       const postData = formatData(posts);
-      console.log('\x1B[1;33mHERE\x1B[0m', postData);
+      // console.log(postData);
+      postData.map((post) => formatData(post.comments));
       res.render('homepage', {
-        posts: postData,
+        posts: postData.reverse(),
         logged_in: req.session.loggedIn,
         name: req.session.name,
+        myId: req.session.user_id,
       });
     }
   } catch (err) {

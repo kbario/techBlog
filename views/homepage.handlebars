@@ -6,34 +6,51 @@
 {{/if}}
 
 {{#if posts}}
-    <div class="flex flex-col w-full gap-3">
+    <div class="flex flex-col w-full gap-5">
         {{#each posts}}
-        <div class="flex flex-col p-3 gap-3 bg-slate-50 border border-slate-200">
-            <div class="flex justify-between">
-                <div class="flex flex-col ga">
-                    <div class="text-slate-600">{{user.username}}</div>
-                    <div class="text-xl">{{title}}</div>
+        <div class="flex flex-col p-5 gap-5 bg-slate-50 border border-slate-200 hover:cursor-pointer" onclick="showContents(event)">
+            <div class="flex justify-between hover:cursor-pointer">
+                <div class="text-2xl font-bold">{{title}}</div>
+                <div class="flex flex-col gap-1 text-slate-500 text-md items-end">
+                    <div class="">{{user.username}}</div>
+                    <div>{{createdAt}}</div>
                 </div>
-                <div>{{updatedAt}}</div>
             </div>
-            <div>{{content}}</div>
-                <hr class="bg-slate-200">
-            {{#if ../logged_in}}
-                <div class="justify-between flex ">
-                    {{!-- <button class="btn-blue">Like</button> --}}
-                    <button class="btn-blue">Comment</button>
+            <div class="hidden flex-col gap-5 bg-slate-50 hover:cursor-auto">
+                <div>{{content}}</div>
+                <hr class="bg-slate-300">
+                {{#if comments}}
+                <div class="flex flex-col gap-1 items-start">
+                    {{#each comments}}
+                    <div class="flex flex-col gap-0 bg-slate-100 py-1 px-2 rounded-sm">
+                        <div class="text-md text-slate-600">{{user.username}} - {{createdAt}}</div>
+                        <div class="text-lg">{{content}}</div>
+                    </div>
+                    {{/each}}
                 </div>
-            {{else}}
+                {{/if}}
+                {{#if ../logged_in}}
                 <div class="flex gap-3">
-                    {{!-- <button title="login to like the post" class="btn-grey hover:cursor-not-allowed" disabled>Like</button> --}}
-                    <button title="login to comment on this post" class="btn-grey hover:cursor-help" disabled>Comment</button>
+                    {{!-- <button class="btn-blue">Like</button> --}}
+                    <input class="grow form-input form-inputs" type="text" placeholder="Comment">
+                    <button class="btn-blue" onclick="comment(event, {{id}})">Comment</button>
                 </div>
-            {{/if}}
+                {{else}}
+                <div class="flex gap-3" title="login to comment on this post">
+                    
+                    {{!-- <button title="login to like the post" class="btn-grey hover:cursor-not-allowed" disabled>Like</button> --}}
+                    <input class="grow cursor-vertical-text form-input form-inputs" type="text" disabled>
+                    <button class="btn-grey hover:cursor-help" disabled>Comment</button>
+                </div>
+                {{/if}}
+            </div>
+            
         </div>
-            {{!-- {{>post-partial}} --}}
         {{/each}}
     </div>
     {{else}}
         <div>There are no more posts to display.</div>
     {{/if}}
 </div>
+
+<script src="/js/homepage.js"></script>
